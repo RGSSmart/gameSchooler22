@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+@font-face {
+    font-family: "Arcade";
+    src: local("Arcade"), url(./assets/fonts/ARCADECLASSIC.TTF) format("truetype");
+}
+body { margin: 0; font-family: Arcade, "Helvetica Neue", sans-serif; }

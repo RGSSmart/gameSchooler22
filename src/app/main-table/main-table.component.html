@@ -1,0 +1,66 @@
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> # </th>
+        <td mat-cell *matCellDef="let element">
+            <span [ngClass]="{'red' : element.life == 0}"> {{element.id}} </span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rang">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element">
+            <div *ngIf="element.rang=='GOLD'">
+                <img src="assets/gold.png" height="45px">
+            </div>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Ime i prezime </th>
+        <td mat-cell *matCellDef="let element" (click)="details(element)">
+            <span [ngClass]="{'red' : element.life == 0}">{{element.name}} </span>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="life">
+        <th mat-header-cell *matHeaderCellDef> Zivota </th>
+        <td mat-cell *matCellDef="let element">
+            <img *ngIf="element.life === 3" src="assets/fullhearts.png" height="35px">
+            <img *ngIf="element.life === 2" src="assets/2hearts.png" height="35px">
+            <img *ngIf="element.life === 1" src="assets/1heart.png" height="35px">
+
+            <button mat-button color="warn" *ngIf="element.life === 0" class="mid-btn">
+                <img *ngIf="element.life === 0" src="assets/0heart.png" height="35px"> <span class="red">
+                    GAME OVER</span></button>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef> Bodovi</th>
+        <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+    </ng-container>
+    <ng-container matColumnDef="grades">
+        <th mat-header-cell *matHeaderCellDef> Ocene</th>
+        <td mat-cell *matCellDef="let element">
+            <span [ngClass]="{'red': grade === 1, 'blue': grade === 5}" *ngFor="let grade of element.grades">
+                {{grade}}
+            </span>
+        </td>
+    </ng-container>
+ 
+    <ng-container matColumnDef="avg">
+        <th mat-header-cell *matHeaderCellDef> Trenutni prosek ocena</th>
+        <td mat-cell *matCellDef="let element">
+            4.00
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Detalji</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button> . . . </button>
+            <button mat-raised-button> Zakljuci ocenu </button>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
